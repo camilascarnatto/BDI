@@ -27,29 +27,36 @@ def agregar():
     print()
     print("Agregado con exito! ")
     print()
-    print
+    print("Asi está la lista ahora")
     print(clientes)
     print("________________________")
 
 def eliminar():
     nombre = str(input("Ingrese el nombre y apellido a eliminar: "))
     print()
-    for i in clientes:
-        if i == nombre:
-            clientes.remove(i)
-            print("Eliminado con exito! ")
-        else :
-            print("No se ha encontrado coincidencias.")
-            print("Verifique lo ingresado e intente de nuevo. ")
-            
+    posicion=0
+    eliminado=0
+  
+    while posicion < len(clientes):
+        if clientes[posicion] == nombre:
+            clientes.pop(posicion)
+            eliminado=1
+            break
+        else:
+            posicion=posicion+1
+    if eliminado == 1:
+        print("Eliminado con exito! ")
+    else:
+        print("No se ha encontrado coincidencias.")
+        print("Verifique lo ingresado e intente de nuevo. ")    
+
     print()
     print("Asi está la lista ahora: ") #vale para pocos elementos
     print(clientes)
     print()
     
 
-    
-
+###########################
 
 def menu():
     imprimirMenu()
