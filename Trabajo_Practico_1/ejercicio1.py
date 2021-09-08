@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-#hola
+
 
 from os import pipe
 
