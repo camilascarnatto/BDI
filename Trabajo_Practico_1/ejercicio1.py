@@ -4,6 +4,7 @@
 from os import pipe
 #hola
 
+clientes=[]
 
 def imprimirMenu():
     print()
@@ -19,7 +20,8 @@ def imprimirMenu():
     print("________________________")
     print()
 
-clientes = []
+
+############  FUNCIONES ABM ###################
 
 def agregar():
     nombre = str(input("Ingrese nombre y apellido: "))
@@ -56,14 +58,49 @@ def eliminar():
     print()
     
 
-###########################
+def modificar ():
+    print("Vista de la lista ")
+    print()
+    modificado = 0
+    i = 1
+    for i, val in enumerate(clientes): # mostrar lista con sus posiciones
+        print("Posicion",i,"- Nombre:", val)
+    print()
+
+    posicion= int(input("Ingrese el numero de la posicion a modificar: "))
+    print()
+    yes_no=str(input("¿Desea modificar este registro: "+clientes[posicion]+" ? s/n: "))
+    print()
+    if yes_no == 's':
+        nuevo_nombre = str(input("Ingrese el nuevo nombre: "))
+        while i < len(clientes):
+            if i == posicion:
+                clientes.insert(i,nuevo_nombre)
+                modificado=1
+                break
+            else:
+                i = i+1
+    else:
+        print("La lista no ha sido modificada")
+    
+    if modificado == 1:
+        print("La modificacion resultó exitosa")
+        print()
+        print("Asi está la lista ahora")
+        print()
+        print(clientes)
+    else:
+        print("La posicion ingresada no es correcta. Intente de nuevo")
+    
+
+ #############################################               
 
 def menu():
     imprimirMenu()
     while True:
         try:
             entrada_usuario = int(input("Seleccione una opcion: "))
-            
+
             if entrada_usuario in range(5):
 
                 if entrada_usuario == 0:
@@ -72,14 +109,18 @@ def menu():
                 print()
                
                 if entrada_usuario == 1:
-                    print("< Alta de Cliente >")
+                    print("---ALTA CLIENTE---")
                     print()
                     agregar()
                     #print("Usted eligió la opcion {} !\n".format(entrada_usuario))
                 
-                if entrada_usuario == 3:
-                    print("< Baja de Cliente >")
+                if entrada_usuario == 2:
+                    print("---MODIFICAR CLIENTE---")
                     print()
+                    modificar()
+
+                if entrada_usuario == 3:
+                    print("---BAJA CLIENTE---")
                     eliminar()                  
             else:
                 print('Ingresó una opción incorrecta. Intente de nuevo.')
@@ -93,7 +134,7 @@ def menu():
 
         except ValueError:
             print("Error, ingrese solamente numeros")
-
+    
 
 if __name__ == '__main__':
     menu()
