@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 from io import open
-from os import pipe
 import os
+
 
 global posicion
 posicion = 0
@@ -25,7 +25,7 @@ def agregar ():
     datos = open("clientes.txt", "a", encoding="utf-8")  #"a">salto de linea / "w"> sin salto de linea
     nombre = str(input("Ingrese nombre completo: "))
     codigo = int(input("Ingrese numero de codigo: "))
-    datos.write("\n"+ str(posicion) + "     " + nombre + "          " + str(codigo))
+    datos.write( str(posicion) + "     " + nombre + "          " + str(codigo)+"\n")
     datos.close()
     incrementarPosicion()
     print("Añadido con exito")
@@ -36,6 +36,31 @@ def mostrarArchivo():
     print(datos.read())
     datos.close()
 
+def modificar() :
+    mostrarArchivo()
+
+    pos = int(input("Ingrese la posicion que desea modificar: "))
+    nombre = str(input("Ingrese nombre: "))
+    codigo = int(input("Ingrese codigo: "))
+  
+    datos = open("clientes.txt", "r+", encoding="utf-8")
+  
+    nuevaLinea = (str(pos) + "    " + nombre + "        " + str(codigo))
+    
+   # datos.seek(0,0)
+    datos.seek(1,pos)
+    datos.writelines(" ")
+    datos.writelines(nuevaLinea)
+    datos.close()
+
+    print("Registro modificado!")
+    print()
+    mostrarArchivo()
+ 
+
+
+    
+    
 
 def menu():
     imprimirMenu()
