@@ -1,3 +1,5 @@
-Nombre                     Nro Cliente.
-camila scarnatto
-agustin normand
+Posicion     Nombre                     Nro Cliente.
+
+
+0     Camila scarnatto          2121
+1     Agustin normand          7464

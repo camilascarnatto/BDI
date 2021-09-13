@@ -3,6 +3,8 @@ from io import open
 from os import pipe
 import os
 
+global posicion
+posicion = 0
 
 def imprimirMenu():
     print()
@@ -14,14 +16,18 @@ def imprimirMenu():
     print("________________________")
     print()
 
-
-def agregar ():                                           #"r+"> leer y escribir(actualizar)
+def incrementarPosicion():
+    global posicion
+    posicion = posicion+1
+    
+def agregar (): 
+    global posicion                                          #"r+"> leer y escribir(actualizar)
     datos = open("clientes.txt", "a", encoding="utf-8")  #"a">salto de linea / "w"> sin salto de linea
     nombre = str(input("Ingrese nombre completo: "))
-    codigo = int(input("Ingrese numero de codigo: ")) #mejorar a funcion aleatoria
-    datos.write(nombre + "\n")
-   # datos.write(codigo)
+    codigo = int(input("Ingrese numero de codigo: "))
+    datos.write("\n"+ str(posicion) + "     " + nombre + "          " + str(codigo))
     datos.close()
+    incrementarPosicion()
     print("Añadido con exito")
     
 
